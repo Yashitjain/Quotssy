@@ -9,7 +9,8 @@ require('dotenv').config()
 
 
 //connection
-mongoose.connect(process.env.MONGO_URL).then(()=>"db connected").catch((err)=>console.log(err));
+console.log(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGO_URL).then(()=>"db connected").catch((err)=>console.log("Db connection Error==>",err));
 
 //middleware
 var task = cron.schedule("* * * * * *", ()=>{

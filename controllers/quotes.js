@@ -106,7 +106,6 @@ async function handleTimeToSendQuotes(){
         userschedule = `${Number(userschedule[0])}:${Number(userschedule[1])}:${Number(userschedule[2])}`
         let currentTime = new Date();
         currentTime= `${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`
-        console.log(`${currentTime} | ${userschedule} | ${currentTime === userschedule}`)
 
         if(currentTime === userschedule){
             if (handleSendQuotes(element)) {
