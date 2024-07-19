@@ -100,12 +100,18 @@ async function handleQuotesCategorySubmission(req,res){
 }
 
 async function handleTimeToSendQuotes(){
-    const allusers = await userModel.find({});
-    allusers.forEach(async element => {
+        const allusers = await userModel.find({});
+        allusers.forEach(async element => {
         let userschedule = (element.time).split(':');
-        userschedule = `${Number(userschedule[0])}:${Number(userschedule[1])}:${Number(userschedule[2])}`
+        userschedule = (userschedule.toString()).replaceAll(",",":")
+        userschedule = ejsTimeFormat(userschedule);
+
         let currentTime = new Date();
+        var currentOffset = currentTime.getTimezoneOffset();
+        var ISTOffset = 330;   // IST offset UTC +5:30 
+        currentTime = new Date(currentTime.getTime() + (ISTOffset + currentOffset)*60000);
         currentTime= `${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`
+        currentTime = ejsTimeFormat(currentTime)
 
         if(currentTime === userschedule){
             if (handleSendQuotes(element)) {
@@ -131,6 +137,7 @@ async function handleSendQuotes(user){
     }, async function(error, response, body) {
         body = JSON.parse(body)
         body = body[0]
+        console.log(body);
     if(error) return console.error('Request failed:', error);
     else if(response.statusCode != 200) return console.error('Error:', response.statusCode, body.toString('utf8'));
 
