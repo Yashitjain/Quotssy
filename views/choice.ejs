@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        form{
+            margin-top: 2rem;
+            border: 1px solid black;
+            padding-left: 1rem;
+            padding-bottom: 2rem;
+            width: 80%;
+            margin-inline: auto;
+        }
+        .container{
+            margin: 4rem;
+        }
+
+    </style>
+
+    <%- include('../partials/css.ejs') %>
+
+</head>
+<body>
+     
+    <h1 style="margin-inline: auto;width: fit-content;margin-top: 1rem;">Quotsyy</h1>
+    <%= locals.width %>
+        <center><h3>Select The Category Of Quotes You Wish </h3></center>
+
+        <% if (locals.category) { %>
+            <form action="/quoteschoice/submitChoice" method="post">
+            <div class="d-flex flex-row mb-3 flex-wrap"> 
+                <% for( let index = 0; index < category.length; index++ ) { %>
+                    <div class="p-2" style="height: 2rem;width: fit-content;margin-bottom: 12px;">
+                        <label for="choiceCheckBox"><%= category[index] %></label>
+                    <% if (locals.userChoice && (locals.userChoice).includes(category[index])) { %>
+                            <input type="checkbox" value = <%= category[index] %> id="choiceCheckBox" name="category" checked>
+                    <% } else{%>
+                            <input type="checkbox" value = <%= category[index] %> id="choiceCheckBox" name="category" >                    
+                        <%} %> 
+                    </div>
+                <% } %>
+        </div>
+        <% } %>
+    <div class="time" style="width: fit-content;margin-inline:auto;padding: 12px;margin-top: 1rem;margin-bottom: 2rem;">
+        <h3 style="margin-bottom:1.5rem ;">Select The time to get Quotes</h3>
+        <label for="TimeTOSend" >Time:</label>
+        <input type="time" name="time" id="TimeTOSend" step="1" value=<%= locals.time %> style="width:40%;"><br>
+
+        <label for="TimeTOSend" style="margin-top: 1rem;">Interval:</label>
+        <input type="time" name="interval" id="TimeTOSend" step="1" min="00:01:00" value=<%= locals.interval %> style="width:40%;display: inline;">
+        <button type="submit" class="btn btn-primary" style="display: block;margin: 1rem;">Submit</button>
+    </div>
+    </form>
+
+
+
+    <%- include("../partials/script.ejs") %>
+</body>
+</html>
