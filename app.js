@@ -24,6 +24,7 @@ app.use(express.urlencoded({extends:false}))
 //static
 app.set("view engine","ejs");
 app.use(express.static('views'))
+app.use(express.static("./partials"))
 
 //routers
 const userRoute = require("./router/user")
