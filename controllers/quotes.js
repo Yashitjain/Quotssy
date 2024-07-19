@@ -94,7 +94,8 @@ async function handleQuotesCategorySubmission(req,res){
 
     if(choices.length === 1) choices = [choices];
     if(choices.length === 0) choices = user.choice;
-    await userModel.findOneAndUpdate({email:user.email},{$addToSet:{choice:{$each:choices}},time:req.body.time,interval:req.body.interval});
+    console.log(choices);
+    await userModel.findOneAndUpdate({email:user.email},{choice:choices,time:req.body.time,interval:req.body.interval});
 
     return res.redirect("/quoteschoice")
 }
