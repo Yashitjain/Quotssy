@@ -84,6 +84,7 @@ async function handleQuotesCategory(req,res){
         userChoice:user.choice,
         interval:ejsTimeFormat(user.interval),
         time:ejsTimeFormat(user.time),
+        user:"true"
     });
 }
 

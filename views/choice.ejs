@@ -52,10 +52,15 @@
         <label for="TimeTOSend" style="margin-top: 1rem;">Interval:</label>
         <input type="time" name="interval" id="TimeTOSend" step="1" min="00:01:00" value=<%= locals.interval %> style="width:40%;display: inline;">
         <button type="submit" class="btn btn-primary" style="display: block;margin: 1rem;">Submit</button>
+
+        <% if (locals.user == "true") { %>
+            <a href="/logout"> <button class="btn btn-secondary" style="margin: 1rem;">logout</button> </a>
+        <% } %>
     </div>
+        
     </form>
 
-
+   
 
     <%- include("../partials/script.ejs") %>
 </body>

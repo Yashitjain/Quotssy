@@ -5,6 +5,7 @@ let OTP=1110;
 let newuser ;
 
 async function handleUserSignin(req,res){
+    console.log(req.cookies.token);    
     const userexist = await userModel.findOne({email:req.query.email})
     if(!userexist){
         return res.render("signin",{
