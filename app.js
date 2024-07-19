@@ -33,6 +33,7 @@ const quoteRouter = require("./router/quotes")
 app.use("/",userRoute);
 
 app.get("/",(req,res,next)=>{
+    console.log("token=>",!(req.cookies.token));
     if(req.cookies.token && verifyToken(req.cookies.token)) return res.redirect("/quoteschoice") 
     res.render("signin");
 });
@@ -41,10 +42,9 @@ app.get("/signup",(req,res)=>{
     res.render("signup")
 })
 
-app.get("/logout",async (req,res)=>{
-    console.log(req.cookies.token)
+app.get("/logout",(req,res)=>{
+    console.log("token=>",req.cookies.token)
     res.clearCookie("token")
-    req.query = {}
     console.log(req.cookies)
     return res.redirect("/")
 })

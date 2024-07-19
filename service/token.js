@@ -11,7 +11,8 @@ function setToken(username,email){
 }
 
 function verifyToken(token){
-    return jwt.verify(token,key)
+    if(token) return jwt.verify(token,key)
+    
 }
 
 module.exports={setToken,verifyToken}

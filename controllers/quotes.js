@@ -78,6 +78,9 @@ const category=[
 
 async function handleQuotesCategory(req,res){
     const payload = verifyToken(req.cookies.token);
+    if(!payload){
+        return res.redirect("/")
+    }
     const user = await userModel.findOne({email:payload.email})
     return res.render("choice",{
         category:category,
