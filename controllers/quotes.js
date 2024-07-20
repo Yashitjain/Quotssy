@@ -118,6 +118,8 @@ async function handleTimeToSendQuotes(){
         currentTime= `${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`
         currentTime = ejsTimeFormat(currentTime)
 
+        console.log(`${currentTime}|${userschedule}|${currentTime === userschedule}`)
+
         if(currentTime === userschedule){
             if (handleSendQuotes(element)) {
                 const userInterval = (element.interval).split(":");
